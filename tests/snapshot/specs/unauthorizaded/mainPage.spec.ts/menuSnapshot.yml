@@ -12,9 +12,6 @@
       - link "RUTUBE x PREMIER …":
         - /url: /feeds/premier/
     - listitem:
-      - link "Простоквашино …":
-        - /url: /feeds/prostokvashino/
-    - listitem:
       - link "RUTUBE для блогеров …":
         - /url: /for_creators
     - listitem:

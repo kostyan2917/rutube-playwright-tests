@@ -10,3 +10,15 @@ test('Проверка доступности элементов табов ка
 test('Проверка доступности элементов бокового меню', async ({ mainPage }) => {
   await mainPage.menuHasCorrectAriaSnapshot();
 });
+test('Проверка доступности элементов списка добавления контента', async ({ mainPage }) => {
+  await mainPage.openAddPopupList();
+  await mainPage.addPopupListHasCorrectAriaSnapshot();
+});
+test('Проверка доступности элементов попапа уведомлений', async ({ mainPage }) => {
+  await mainPage.openNotificationsPopupList();
+  await mainPage.notificationsPopupHasCorrectAriaSnapshot();
+});
+test('Проверка доступности элементов модального окна авторизации', async ({ mainPage }) => {
+  await mainPage.openAuthorizationModal();
+  await mainPage.authorizationModalHasCorrectAriaSnapshot();
+});

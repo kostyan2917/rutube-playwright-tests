@@ -10,15 +10,16 @@ export class MainPage extends BasePage {
   private readonly headerAddButtonPopupListLocator: Locator;
   private readonly headerNotificationsPopupLocator: Locator;
   private readonly authorizationModalLocator: Locator;
+  private readonly menuButtonLocator: Locator;
+  private readonly openMenuAriaLocator: Locator;
+  private readonly changeThemeButtonLocator: Locator;
 
   constructor(page: Page) {
     super(page);
     this.headerLocator = this.page.getByRole('banner');
-    this.categoriesTabsbLocator = this.page
-      .locator('section')
-      .filter({
-        hasText: /^ГлавнаяФильмыСериалыТелешоуСпортБлогерыНовостиМузыкаПодкастыДетямТВ онлайн$/,
-      });
+    this.categoriesTabsbLocator = this.page.locator('section').filter({
+      hasText: /^ГлавнаяФильмыСериалыТелешоуСпортБлогерыНовостиМузыкаПодкастыДетямТВ онлайн$/,
+    });
     this.menuLocator = this.page.getByLabel('Облегченная панель навигации');
     this.headerAddButtonLocator = this.page.getByRole('button', { name: 'Добавить' });
     this.headerNotificationsButtonLocator = this.page.getByRole('button', { name: 'Уведомления' });
@@ -33,9 +34,20 @@ export class MainPage extends BasePage {
       .locator('iframe[title="Multipass"]')
       .contentFrame()
       .locator('div[role="form"]');
+    this.menuButtonLocator = this.page.getByRole('button', { name: 'Открыть меню навигации' });
+    this.openMenuAriaLocator = this.page.locator('.menu-content-module__menuOpen');
+    this.changeThemeButtonLocator = this.page.getByRole('button', {
+      name: 'Переключить на светлую тему',
+    });
   }
   async open() {
-    await this.page.goto('https://rutube.ru/');
+    this.page.goto('https://rutube.ru/');
+  }
+  async changeThemeToWhite() {
+    await this.changeThemeButtonLocator.click();
+  }
+  async openFullMenu() {
+    await this.menuButtonLocator.click();
   }
   async headerHasCorrectAriaSnapshot() {
     await expect(this.headerLocator).toMatchAriaSnapshot({ name: 'headerAriaSnapshot.yml' });
@@ -72,5 +84,24 @@ export class MainPage extends BasePage {
     await expect(this.authorizationModalLocator).toMatchAriaSnapshot({
       name: 'authorizationModal.yml',
     });
+  }
+  async fullMenuHasCorrectAriaSnapshot() {
+    await expect(this.openMenuAriaLocator).toBeVisible();
+
+    await expect(this.page.getByRole('button', { name: 'Моё' })).toBeVisible();
+
+    await expect(this.page.getByRole('link', { name: 'Подписки' })).toHaveAttribute(
+      'href',
+      '/my/subscriptions/',
+    );
+
+    await expect(this.page.getByRole('button', { name: 'По темам' })).toBeVisible();
+
+    await expect(
+      this.openMenuAriaLocator.getByRole('button', { name: 'Вход и регистрация' }),
+    ).toBeVisible();
+  }
+  async checkThemeAttributeValue(attributeValue: 'dark' | 'light') {
+    await expect(this.page.locator('html')).toHaveAttribute('data-themeid', attributeValue);
   }
 }

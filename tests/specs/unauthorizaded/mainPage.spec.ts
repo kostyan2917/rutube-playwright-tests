@@ -22,3 +22,12 @@ test('Проверка доступности элементов модальн�
   await mainPage.openAuthorizationModal();
   await mainPage.authorizationModalHasCorrectAriaSnapshot();
 });
+test('Проверка доступности элементов раскрытого меню', async ({ mainPage }) => {
+  await mainPage.openFullMenu();
+  await mainPage.fullMenuHasCorrectAriaSnapshot();
+});
+test('Переключение темы', async ({ mainPage }) => {
+  await mainPage.checkThemeAttributeValue('dark');
+  await mainPage.changeThemeToWhite();
+  await mainPage.checkThemeAttributeValue('light');
+});

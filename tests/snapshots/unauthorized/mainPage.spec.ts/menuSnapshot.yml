@@ -3,9 +3,6 @@
     - listitem:
       - link "Главная": Главная …
     - listitem:
-      - link "Новый год …":
-        - /url: /feeds/newyear2026/
-    - listitem:
       - link "RUTUBE x START …":
         - /url: /feeds/start/
     - listitem:

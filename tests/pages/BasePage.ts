@@ -8,15 +8,31 @@ export class BasePage {
   }
 
   async closeCookiesAlert() {
-    await this.page.getByRole('button', { name: 'Ок', exact: true }).click();
+    try {
+      await this.page.getByRole('button', { name: 'Ок', exact: true }).click({ timeout: 2000 });
+    } catch {
+      // cookies popup отсутствует — это нормально
+    }
   }
 
   async closeOnboardingPopup() {
-    const popup = this.page.locator('.wdp-popup-module__popup');
-    const closeButton = popup.getByRole('button', { name: 'Закрыть' });
+    const button = this.page.getByRole('button', { name: 'Закрыть' });
 
-    if (await popup.isVisible({ timeout: 1000 })) {
-      await closeButton.click();
+    try {
+      await button.waitFor({ state: 'visible', timeout: 3000 });
+      await button.click();
+    } catch {
+      // попап не появился — ок
+    }
+  }
+  async closePushPopup() {
+    const button = this.page.getByRole('button', { name: 'Не надо' });
+
+    try {
+      await button.waitFor({ state: 'visible', timeout: 3000 });
+      await button.click();
+    } catch {
+      // попап не появился — ок
     }
   }
 }

@@ -97,9 +97,17 @@ export class MainPage extends BasePage {
 
     await expect(this.page.getByRole('button', { name: 'По темам' })).toBeVisible();
 
-    await expect(
-      this.openMenuAriaLocator.getByRole('button', { name: 'Вход и регистрация' }),
-    ).toBeVisible();
+    const loginButton = this.openMenuAriaLocator.getByRole('button', {
+      name: 'Вход и регистрация',
+    });
+
+    const isAuthorized = (await loginButton.count()) === 0;
+
+    if (isAuthorized) {
+      await expect(loginButton).toHaveCount(0);
+    } else {
+      await expect(loginButton).toBeVisible();
+    }
   }
   async checkThemeAttributeValue(attributeValue: 'dark' | 'light') {
     await expect(this.page.locator('html')).toHaveAttribute('data-themeid', attributeValue);

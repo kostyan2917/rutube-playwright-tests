@@ -1,0 +1,24 @@
+- link "Иконка канала channel74958999 channel74958999 ko****@mail.ru Добавьте номер телефона":
+  - /url: /profile/info/
+  - img "Иконка канала channel74958999":
+    - img "Иконка канала channel74958999"
+  - paragraph: channel74958999
+  - paragraph: ko****@mail.ru
+  - paragraph: Добавьте номер телефона
+  - img
+- list:
+  - listitem:
+    - link "Профиль":
+      - /url: /profile/
+      - paragraph: Профиль
+  - listitem:
+    - link "Мой канал":
+      - /url: /channel/74958999/
+      - paragraph: Мой канал
+  - listitem:
+    - link "Студия RUTUBE":
+      - /url: https://studio.rutube.ru/
+      - paragraph: Студия RUTUBE
+- button "Выйти":
+  - img
+  - text: ""

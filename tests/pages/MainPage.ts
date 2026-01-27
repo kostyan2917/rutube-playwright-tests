@@ -82,28 +82,7 @@ export class MainPage extends BasePage {
     await this.checkAriaSnapshot(this.authorizationModalLocator, 'authorizationModal.yml');
   }
   async fullMenuHasCorrectAriaSnapshot() {
-    await expect(this.openMenuAriaLocator).toBeVisible();
-
-    await expect(this.page.getByRole('button', { name: 'Моё' })).toBeVisible();
-
-    await expect(this.page.getByRole('link', { name: 'Подписки' })).toHaveAttribute(
-      'href',
-      '/my/subscriptions/',
-    );
-
-    await expect(this.page.getByRole('button', { name: 'По темам' })).toBeVisible();
-
-    const loginButton = this.openMenuAriaLocator.getByRole('button', {
-      name: 'Вход и регистрация',
-    });
-
-    const isAuthorized = (await loginButton.count()) === 0;
-
-    if (isAuthorized) {
-      await expect(loginButton).toHaveCount(0);
-    } else {
-      await expect(loginButton).toBeVisible();
-    }
+    await this.checkAriaSnapshot(this.openMenuAriaLocator, 'fullMenuSnaphot.yml');
   }
   async headerUserMenuHasCorrectAriaSnapshot() {
     await this.checkAriaSnapshot(this.headerUserMenuLocator, 'headerUserMenuSnapshot.yml');

@@ -19,9 +19,7 @@ export class MainPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.headerLocator = this.page.getByRole('banner');
-    this.categoriesTabsbLocator = this.page.locator('section').filter({
-      hasText: /^ГлавнаяФильмыСериалыТелешоуСпортБлогерыНовостиМузыкаПодкастыДетямТВ онлайн$/,
-    });
+    this.categoriesTabsbLocator = this.page.locator('.wdp-tabs-module__tabs');
     this.menuLocator = this.page.getByLabel('Облегченная панель навигации');
     this.headerAddButtonLocator = this.page.getByRole('button', { name: 'Добавить' });
     this.headerNotificationsButtonLocator = this.page.getByRole('button', { name: 'Уведомления' });
@@ -79,7 +77,15 @@ export class MainPage extends BasePage {
     await this.checkAriaSnapshot(this.headerNotificationsPopupLocator, 'notificationsPopup.yml');
   }
   async authorizationModalHasCorrectAriaSnapshot() {
-    await this.checkAriaSnapshot(this.authorizationModalLocator, 'authorizationModal.yml');
+    const frame = this.page.frameLocator('iframe[title="Multipass"]');
+
+    await expect(frame.getByRole('heading', { name: 'Вход или регистрация' })).toBeVisible();
+
+    const form = frame.getByRole('form');
+
+    await expect(form).toBeVisible();
+
+    await this.checkAriaSnapshot(form, 'authorizationModal.yml');
   }
   async fullMenuHasCorrectAriaSnapshot() {
     await this.checkAriaSnapshot(this.openMenuAriaLocator, 'fullMenuSnaphot.yml');

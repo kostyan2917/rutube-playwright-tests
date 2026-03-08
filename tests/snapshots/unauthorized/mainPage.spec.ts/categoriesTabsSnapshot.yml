@@ -2,33 +2,40 @@
   - listitem:
     - link "Главная":
       - /url: /
+    - text: Главная
   - listitem:
     - link "Фильмы":
       - /url: /feeds/new_main_page/movies/
+    - text: Фильмы
   - listitem:
     - link "Сериалы":
       - /url: /feeds/new_main_page/series/
+    - text: Сериалы
   - listitem:
     - link "Телешоу":
       - /url: /feeds/new_main_page/tv/
+    - text: Телешоу
   - listitem:
     - link "Спорт":
       - /url: /feeds/new_main_page/sport/
+    - text: Спорт
   - listitem:
     - link "Блогеры":
       - /url: /feeds/new_main_page/ugc/
-  - listitem:
-    - link "Новости":
-      - /url: /feeds/new_main_page/news/
+    - text: Блогеры
   - listitem:
     - link "Музыка":
       - /url: /feeds/new_main_page/music/
+    - text: Музыка
   - listitem:
     - link "Подкасты":
       - /url: /feeds/new_main_page/podcasts/
+    - text: Подкасты
   - listitem:
     - link "Детям":
       - /url: /feeds/new_main_page/kids/
+    - text: Детям
   - listitem:
     - link "ТВ онлайн":
       - /url: /feeds/new_main_page/lives/
+    - text: ТВ онлайн

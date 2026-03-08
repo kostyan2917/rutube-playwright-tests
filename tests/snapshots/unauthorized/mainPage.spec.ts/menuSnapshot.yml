@@ -3,11 +3,11 @@
     - listitem:
       - link "Главная": Главная …
     - listitem:
-      - link "RUTUBE x START …":
-        - /url: /feeds/start/
-    - listitem:
       - link "RUTUBE x PREMIER …":
         - /url: /feeds/premier/
+    - listitem:
+      - link "RUTUBE x START …":
+        - /url: /feeds/start/
     - listitem:
       - link "RUTUBE для блогеров …":
         - /url: /for_creators

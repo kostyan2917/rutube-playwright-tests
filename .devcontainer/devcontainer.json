@@ -1,0 +1,19 @@
+{
+  "name": "Playwright in Docker",
+  "image": "mcr.microsoft.com/playwright:v1.58.0-noble",
+  "workspaceFolder": "/tests",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/tests,type=bind"
+  ],
+  "runArgs": [
+    "--ipc=host"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-playwright.playwright",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
+}

@@ -128,7 +128,7 @@
                 - /url: /forms/problem/
         - listitem:
             - link "Написать в поддержку":
-                - /url: mailto:help@rutube.ru?subject=Запрос в поддержку RUTUBE
+                - /url: /mailto:help@rutube\.ru.*/
         - listitem:
             - link "help@rutube.ru":
                 - /url: /
